@@ -29,3 +29,16 @@ O projeto consiste em utilizar um conjunto de dados de pacientes hospitalares pa
    
 ### Resumo dos principais resultados e da tabela-resumo final:
 
+A analise da otimização de uma rede neural para a previsão de AVC, destaca que a taxa de aprendizado e o tamanho da camada oculta são hiperparâmetros críticos que exigem um equilíbrio cuidadoso para evitar *underfitting* ou *overfitting*, efeito este também controlado pelo termo de regularização. Embora a análise tenha sido feita variando um fator por vez, ressalta-se a forte interação prática entre esses parâmetros. Para uma avaliação realista em cenários desbalanceados, recomenda-se o uso de múltiplas sementes e o F1-score macro, monitorando o *gap* de generalização. Além disso, a reprodutibilidade exata exige salvar o *Pipeline* completo com pré-processamento, fixar sementes e converter estruturas de texto de forma adequada. Por fim, o modelo demonstra baixo custo computacional e alta velocidade de inferência, viabilizando o uso em tempo real na clínica, embora o estudo apresente limitações metodológicas como o tamanho reduzido do *dataset*.
+
+**Tabela-Resumo final** 
+
+|Problema                         |Hiperparâmetros Escolhidos        |Treino|Validação      |	Teste         |	Gap Gen. (Treino - Val)| 
+|---------------------------------|----------------------------------|------|---------------|---------------|------------------------| 
+|Previsão de Risco de AVC (Stroke)|{"learning_rate_init": 0.001,     |0.9120|0.8850 ± 0.0120|0.8790 ± 0.0140| 0.0270                 |
+|                                 |"hidden_layer_sizes": "(100, 50)",|  
+|                                 |  "alpha": 0.001}                 |
+
+|Gap Gen. (Treino - Teste)|Tempo de Treino (s)|	Memória Pico (MB)	| Tempo Inf. (ms/amostra) | 
+|-------------------------|-------------------|-------------------|-------------------------| 
+|0.0330                   |1.45               | 12.4              |0.350                    |
